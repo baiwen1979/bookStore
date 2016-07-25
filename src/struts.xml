@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+  "http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+ <struts>
+   <constant name="struts.objectFactory" value="spring"/>
+   
+   <package name="default" extends="struts-default">
+   
+     <action name="register" class="userAction" method="register">
+       <result name="input">/index.jsp?page=register</result>
+       <result name="success">/index.jsp?page=user</result>
+     </action>
+     
+     <action name="login" class="userAction" method="login">
+       <result name="input">/index.jsp?page=login</result>
+       <result name="success">/index.jsp</result>
+     </action>
+     
+     <action name="logout" class="userAction" method="logout">
+       <result>/index.jsp</result>
+     </action>
+     
+     <action name="categories" class="categoryAction">
+       <result>/WEB-INF/view/menu.jsp</result>
+     </action>
+     
+     <action name="bookList" class="bookAction">
+       <result>/index.jsp?page=books</result>
+     </action>
+     
+     <action name="books" class="bookAction">
+       <result>/WEB-INF/view/books.jsp</result>
+     </action>
+     
+     <action name="search" class="bookAction">
+       <result>/index.jsp?page=books</result>
+     </action>
+     
+     <action name="orders" class="orderAction">
+       <result>/WEB-INF/view/orders.jsp</result>
+     </action>
+     
+     <action name="showCart" class="shoppingAction">
+       <result>/index.jsp?page=cart</result>
+     </action>
+     
+     <action name="addToCart" class="shoppingAction" method="addToCart">
+       <result>/index.jsp?page=cart</result>
+     </action>
+     
+     <action name="updateCart" class="shoppingAction" method="updateCart">
+       <result>/index.jsp?page=cart</result>
+     </action>
+     
+     <action name="removeFromCart" class="shoppingAction" method="removeFromCart">
+       <result>/index.jsp?page=cart</result>
+     </action>
+     
+     <action name="checkout" class="shoppingAction" method="checkout">
+       <result>/index.jsp?page=order</result>
+       <result name="input">/index.jsp?page=login</result>
+       <result name="error">/index.jsp?page=error</result>
+     </action>
+     
+     <action name="feedSampleData" class="feedSampleDataAction">
+       <result>/index.jsp</result>
+       <result name="error">/index.jsp?page=error</result>
+     </action>
+     
+   </package>
+ </struts> 
+  

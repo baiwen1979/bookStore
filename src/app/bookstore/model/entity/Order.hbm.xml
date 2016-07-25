@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-11-11 23:19:21 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="app.bookstore.model.entity">
+ <class name="Order" table="orders">
+  <id name="id" type="long">
+   <generator class="native"/>
+  </id>
+  <property column="creation_date" generated="never" lazy="false"
+   name="creationDate" not-null="true"/>
+  <property column="total_price" name="totalPrice"/>
+  <set cascade="all" inverse="true" name="orderItems" sort="unsorted" table="order_item">
+   <key column="order_id"/>
+   <one-to-many class="OrderItem"/>
+  </set>
+  <many-to-one class="User" column="user_id" name="user" not-null="true"/>
+ </class>
+</hibernate-mapping>

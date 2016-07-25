@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-11-11 23:19:21 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="app.bookstore.model.entity">
+ <class name="Book" table="book">
+  <id name="id" type="long">
+   <generator class="native"/>
+  </id>
+  <property column="creation_date" generated="never" lazy="false"
+   name="creationDate" not-null="true"/>
+  <property generated="never" lazy="false" length="100" name="name" not-null="true"/>
+  <property generated="never" lazy="false" name="price"/>
+  <property column="cover_image_url" generated="never" lazy="false"
+   length="128" name="coverImageFile"/>
+  <many-to-one class="Category" column="category_id" name="category"/>
+ </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-11-11 23:19:21 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="app.bookstore.model.entity">
+ <class name="User">
+  <id name="id" type="long">
+   <generator class="native"/>
+  </id>
+  <property column="creation_date" generated="never" lazy="false"
+   name="creationDate" not-null="true"/>
+  <property generated="never" lazy="false" length="50" name="name" not-null="true"/>
+  <property generated="never" lazy="false" length="64" name="password" not-null="true"/>
+  <property generated="never" lazy="false" length="2" name="sex" not-null="true"/>
+  <property generated="never" lazy="false" name="birthday" not-null="true"/>
+  <property column="login_id" generated="never" lazy="false"
+   length="128" name="loginId" not-null="true"/>
+  <property column="login_times" generated="never" lazy="false"
+   name="loginTimes" not-null="true"/>
+  <property column="last_login_date" generated="never" lazy="false"
+   name="lastLoginDate" not-null="true"/>
+  <set inverse="true" name="orders" sort="unsorted" table="orders">
+   <key column="user_id"/>
+   <one-to-many class="Order"/>
+  </set>
+ </class>
+</hibernate-mapping>

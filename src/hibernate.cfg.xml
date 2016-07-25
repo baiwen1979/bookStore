@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>
+  <!-- 数据库连接配置 -->
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/book_store</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.connection.password">123456</property>
+  <property name="hibernate.connection.pool_size">5</property>
+  <!-- SQL方言 -->
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  <!-- 自动根据映射文件重新生成数据库模式 -->
+  <property name="hibernate.hbm2ddl.auto">validate</property>
+  <!-- 是否显示及格式化输出SQL -->
+  <property name="hibernate.show_sql">true</property>
+  <property name="hibernate.format_sql">true</property>
+  <!-- 是否自动关闭会话 -->
+  <property name="hibernate.transaction.auto_close_session">false</property>
+  <!-- 当前会话上下文类为线程 -->
+  <property name="hibernate.current_session_context_class">thread</property>
+  <!-- 映射文件资源 -->
+  <mapping resource="app/bookstore/model/entity/Order.hbm.xml"/>
+  <mapping resource="app/bookstore/model/entity/User.hbm.xml"/>
+  <mapping resource="app/bookstore/model/entity/OrderItem.hbm.xml"/>
+  <mapping resource="app/bookstore/model/entity/Category.hbm.xml"/>
+  <mapping resource="app/bookstore/model/entity/Book.hbm.xml"/>
+ </session-factory>
+</hibernate-configuration>

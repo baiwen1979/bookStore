@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+           
+    <!-- Hibernate 会话工厂对象 -->   
+	<bean id="sessionFactory" class="app.bookstore.util.HibernateHelper"
+		factory-method="getSessionFactory"/>
+		
+	<!-- 用户管理的Dao,Service,Action -->	
+	<bean id="userDao" class="app.bookstore.model.dao.UserDaoHibernateImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>	
+	<!-- UserService 用户操作的业务对象 -->	
+	<bean id="userService" class="app.bookstore.model.service.UserServiceImpl">
+	    <property name="dao" ref="userDao"/>
+	</bean>	
+	<!-- UserAction 用户操作的控制器对象 -->
+	<bean id="userAction" class="app.bookstore.action.UserAction" scope="prototype">
+	    <property name="service" ref="userService"/>
+	    <property name="model" ref="userModel"/>
+	</bean>
+	<bean id="userModel" class="app.bookstore.model.entity.User" scope="prototype"/>
+	
+	<!-- 图书分类管理的Dao,Service,Action -->
+	<bean id="categoryDao" class="app.bookstore.model.dao.CategoryDaoHibernateImpl" >
+	  <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>	
+	<bean id="categoryService" class="app.bookstore.model.service.CategoryServiceImpl">
+	  <property name="dao" ref="categoryDao"/>
+	</bean>	
+	<bean id="categoryAction" class="app.bookstore.action.CategoryAction" scope="prototype">
+	  <property name="service" ref="categoryService"/>
+	</bean>
+	
+	<!-- 图书管理的Dao,Service,Action -->
+	<bean id="bookDao" class="app.bookstore.model.dao.BookDaoHibernateImpl">
+	  <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="bookService" class="app.bookstore.model.service.BookServiceImpl">
+	  <property name="dao" ref="bookDao"/>
+	</bean>
+	<bean id="bookAction" class="app.bookstore.action.BookAction" scope="prototype">
+	  <property name="service" ref="bookService"/>
+	</bean>
+	
+	<!-- 订单管理的Dao,Service -->
+	<bean id="orderDao" class="app.bookstore.model.dao.OrderDaoHibernateImpl">
+	  <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="orderService" class="app.bookstore.model.service.OrderServiceImpl">
+	  <property name="dao" ref="orderDao"/>
+	</bean>
+	
+	<!-- 购买与结算的Action -->
+	<bean id="shoppingAction" class="app.bookstore.action.ShoppingAction" scope="prototype">
+	  <property name="bookService" ref="bookService"/>
+	  <property name="service" ref="orderService"/>
+	</bean>
+	
+	<!-- 系统管理的Service,Action -->
+	<bean id="systemService" class="app.bookstore.model.service.SystemServiceImpl">
+	  <property name="bookDao" ref="bookDao"/>
+	  <property name="categoryDao" ref="categoryDao"/>
+	  <property name="orderDao" ref="orderDao"/>
+	  <property name="dao" ref="userDao"/>
+	  <property name="feedCode" value="123456" />
+	</bean>
+	<bean id="feedSampleDataAction" class="app.bookstore.action.FeedSampleDataAction" scope="prototype">
+	  <property name="service" ref="systemService"/>	  
+	</bean>
+	
+</beans>
