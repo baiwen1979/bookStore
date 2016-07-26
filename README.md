@@ -7,10 +7,11 @@
 本项目的源代码完全开放，遵循MIT许可，可以任意修改，只是希望获得此源码的人能够将此项目做得更加完善，并能就不足和改进之处与我交流，我的QQ号是：53517099  
 ##使用帮助
 ###【数据库及其表的创建】
-1. 安装后MySQL后，使用其命令行工具输入 [create database book_store;]命令创建空的数据库book_store
+1. 安装后MySQL后，使用其命令行工具输入“create database book_store” 命令创建空的数据库 book_store
 2. 使用Eclipse打开项目目录下的src子目录的hibernate.cfg.xml文件，将含有“hbm2ddl”那一项的值改为create
 3. 启动（或重启）tomcat服务器，tomcat在加载本项目时，本项目的Hibernate的会话工厂对象创建时，将自动根据映射文件重建所有数据表
 4. 将hibernate.cfg.xml文件中“hbm2ddl"配置项的值改为validate  
+
 ###【填充样本数据】
 1. 使用浏览器访问项目首页：http://localhost:8080/bookstore/
 2. 访问feed.jsp页：http://localhost:8080/bookstore/feed.jsp
